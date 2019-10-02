@@ -1,3 +1,12 @@
+# Sort a Python dict by value
+# (== get a representation sorted by value)
+
+>>> xs = {'a': 4, 'b': 3, 'c': 2, 'd': 1}
+
+>>> sorted(xs.items(), key=lambda x: x[1])
+[('d', 1), ('c', 2), ('b', 3), ('a', 4)]
+
+
 # Find two numbers in a list of whole positive integers whose sum is equal to the target: https://www.youtube.com/watch?v=wBXZD436JAg
 # Optimized for speed/time but not for space: Complexity is O(n)
 # Questions to ask: 

@@ -1,10 +1,29 @@
-# Sort a Python dict by value
-# (== get a representation sorted by value)
+# Reverse a string
+# Space Complexity = O(n)
+# Time Complexity = O(n^2)
+class ReverseString:
+  def __init__(self):
+    self.string_to_reverse = ""
+    print(f"This is a test: {self.string_to_reverse}")
+    #print("This is a test: {}".format(self.string_to_reverse))
 
->>> xs = {'a': 4, 'b': 3, 'c': 2, 'd': 1}
+  def reverse_string(self, string_param):
+    for char in string_param:
+      self.string_to_reverse = char + self.string_to_reverse
+    return (self.string_to_reverse)
 
->>> sorted(xs.items(), key=lambda x: x[1])
-[('d', 1), ('c', 2), ('b', 3), ('a', 4)]
+if __name__ == '__main__':
+  reverse_me = ReverseString()
+  print(reverse_me.reverse_string("Adam"))
+
+# Sort a Python Dictionary by values
+def sort_dict_by_value(dict_param):
+  sorted_dict = sorted(dict_param.items(), key=lambda x: x[1])
+  return sorted_dict
+
+if __name__ == '__main__':
+  print(sort_dict_by_value({'a': 4, 'b': 3, 'c': 2, 'd': 1}))
+# [('d', 1), ('c', 2), ('b', 3), ('a', 4)]
 
 
 # Find two numbers in a list of whole positive integers whose sum is equal to the target: https://www.youtube.com/watch?v=wBXZD436JAg

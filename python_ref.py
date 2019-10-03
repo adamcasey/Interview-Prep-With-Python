@@ -20,6 +20,15 @@ print(min_coins(33))#5
 print(min_coins(1))#1
 print(min_coins(0))#0
 
+# Make change using least amount of coins --> Dynamic Programming
+def min_coins_dp(cents)"
+num_of_coins = [0] * (cents * 1)
+num_of_coins[0] = 0
+coins = [25, 10, 5, 1]
+for i in range(1, cents + 1):
+	temp = cents + 1
+	for j in coins :
+		coins_j = i /j
 
 # Reverse a string
 # Space Complexity = O(n)

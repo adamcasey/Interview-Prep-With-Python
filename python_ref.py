@@ -9,16 +9,16 @@ def min_coins(cents):
 	coins = [25, 10, 5, 1]
 	num_of_coins = 0
 	for coin in coins:
-		num_of_coins += cents // coins #python3 --> use //
-		cents = cents % coins
+		num_of_coins += cents // coin #python3 --> use //
+		cents = cents % coin
 		if cents == 0:
 			break
 	return num_of_coins
 
-min_coins(31)#3
-min_coins(33)#5
-min_coins(1)#1
-min_coins(0)#3
+print(min_coins(31))#3
+print(min_coins(33))#5
+print(min_coins(1))#1
+print(min_coins(0))#0
 
 
 # Reverse a string

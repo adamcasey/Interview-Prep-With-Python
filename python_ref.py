@@ -28,7 +28,11 @@ coins = [25, 10, 5, 1]
 for i in range(1, cents + 1):
 	temp = cents + 1
 	for j in coins :
-		coins_j = i /j
+		coins_j = i // j
+		if coins_j != 0:
+			temp = min(temp, coins_j + num_of_coins[cents - coins_j * j])
+	num_of_coins[i] = temp
+return num_of_coins[cents]
 
 # Reverse a string
 # Space Complexity = O(n)

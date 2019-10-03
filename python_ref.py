@@ -1,3 +1,26 @@
+# Quicksort
+
+# Mergesort
+
+# Make change using least amount of coins
+def min_coins(cents):
+	if cents < 1:
+		return 0
+	coins = [25, 10, 5, 1]
+	num_of_coins = 0
+	for coin in coins:
+		num_of_coins += cents // coins #python3 --> use //
+		cents = cents % coins
+		if cents == 0:
+			break
+	return num_of_coins
+
+min_coins(31)#3
+min_coins(33)#5
+min_coins(1)#1
+min_coins(0)#3
+
+
 # Reverse a string
 # Space Complexity = O(n)
 # Time Complexity = O(n^2)

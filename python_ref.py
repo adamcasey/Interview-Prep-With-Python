@@ -212,18 +212,37 @@ print(min_coins(1))#1
 print(min_coins(0))#0
 
 # Make change using least amount of coins --> Dynamic Programming
-def min_coins_dp(cents)"
-num_of_coins = [0] * (cents * 1)
-num_of_coins[0] = 0
-coins = [25, 10, 5, 1]
-for i in range(1, cents + 1):
-	temp = cents + 1
-	for j in coins :
-		coins_j = i // j
-		if coins_j != 0:
-			temp = min(temp, coins_j + num_of_coins[cents - coins_j * j])
-	num_of_coins[i] = temp
-return num_of_coins[cents]
+def dpMakeChange(coinValueList, change ,minCoins, coinsUsed):
+   for cents in range(change+1):
+      coinCount = cents
+      newCoin = 1
+      for j in [c for c in coinValueList if c <= cents]:
+            if minCoins[cents-j] + 1 < coinCount:
+               coinCount = minCoins[cents-j]+1
+               newCoin = j
+      minCoins[cents] = coinCount
+      coinsUsed[cents] = newCoin
+   return minCoins[change]
+
+def printCoins(coinsUsed,change):
+   coin = change
+   while coin > 0:
+      thisCoin = coinsUsed[coin]
+      print(thisCoin)
+      coin = coin - thisCoin
+
+def main():
+    amnt = 31
+    clist = [25, 10, 1]
+    coinsUsed = [0]*(amnt+1)
+    coinCount = [0]*(amnt+1)
+
+    print("Making change for",amnt,"requires")
+    print(dpMakeChange(clist,amnt,coinCount,coinsUsed),"coins")
+    print("They are:")
+    printCoins(coinsUsed,amnt)
+    print("The used list is as follows:")
+    print(coinsUsed)
 
 # Reverse a string
 # Space Complexity = O(n)

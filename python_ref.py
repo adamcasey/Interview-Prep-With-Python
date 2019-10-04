@@ -1,3 +1,8 @@
+
+'''
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'''
+
 # Quicksort
 from random import randrange, random
 import random
@@ -30,7 +35,92 @@ print (sort([]))
 print (sort([1, 3, 4, 2]))
 print (sort([5, 3, 22, 3, -19, 5]))
 print(sort(list_to_sort))
+
+'''
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'''
+
 # Mergesort
+# The merge function does a O(1)O(1) (constant) number of operations for each element in the list. 
+# The list size is O(n)O(n) since there are nn elements. 
+# Merge does a constant amount of work O(n)O(n) times, so merge runs in O(n)O(n) time.
+
+# import random
+
+# def merge(ls1, ls2):
+#     '''
+#     Helper function for MergeSort
+#     This function assumes both source arrays are sorted,
+#     then builds a result array by comparing the first
+#     elements from each and storing the lower one
+#     '''
+#     result = []
+#     while ls1 and ls2:
+#         if ls1[0] < ls2[0]:
+#             result.append(ls1.pop(0))
+#         else:
+#             result.append(ls2.pop(0))
+#     return result + ls1 + ls2
+
+# def MergeSort(ls):
+#     '''
+#     Sorts the input list using a recursive mergesort algorithm
+#     '''
+#     if len(ls) > 1:
+#         mid = len(ls) // 2
+#         return merge(MergeSort(ls[:mid]),MergeSort(ls[mid:]))
+#     else:
+#         return ls
+
+# #print(merge([3,5,7,9],[2,4,6,8,10,12]))    
+# print(MergeSort([7,13,2,9,17,4,6,1]))
+# print(MergeSort([]))
+
+# random_list = [random.randint(0,100) for x in range(10)]
+
+
+# print(MergeSort(random_list))
+
+def merge(left, right):
+    result = []
+    left_idx, right_idx = 0, 0
+    while left_idx < len(left) and right_idx < len(right):
+        # change the direction of this comparison to change the direction of the sort
+        if left[left_idx] <= right[right_idx]:
+            result.append(left[left_idx])
+            left_idx += 1
+        else:
+            result.append(right[right_idx])
+            right_idx += 1
+
+    if left:
+        result.extend(left[left_idx:])
+    if right:
+        result.extend(right[right_idx:])
+    return result
+
+def merge_sort(m):
+    if len(m) <= 1:
+        return m
+
+    middle = len(m) // 2
+    left = m[:middle]
+    right = m[middle:]
+
+    left = merge_sort(left)
+    right = merge_sort(right)
+    return list(merge(left, right))
+
+import random
+random_list = [random.randint(0,100) for x in range(10)]
+print("Before sorting: {}".format(random_list))
+print("After sorting: {}".format(merge_sort(random_list)))
+
+print("Empty list: {}".format(merge_sort([])))
+
+'''
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'''
 
 # Make change using least amount of coins
 def min_coins(cents):
@@ -91,6 +181,9 @@ if __name__ == '__main__':
   print(sort_dict_by_value({'a': 4, 'b': 3, 'c': 2, 'd': 1}))
 # [('d', 1), ('c', 2), ('b', 3), ('a', 4)]
 
+'''
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'''
 
 # Find two numbers in a list of whole positive integers whose sum is equal to the target: https://www.youtube.com/watch?v=wBXZD436JAg
 # Optimized for speed/time but not for space: Complexity is O(n)

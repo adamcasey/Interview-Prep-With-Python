@@ -36,7 +36,7 @@ def findKthLargest(arr, k):
     #print("choosenPivotIndex: {}".format(choosenPivotIndex))
 		
     # Execute the actual partitioning and get back the final position \
-    # of the pivot we choose after partitioning is over
+    # of the pivot we choose after partitioning is over.
     finalIndexOfChoosePivot = partition(arr, left, right, choosenPivotIndex)
     
 		# The pivot is index on index n - k. This is literally its final position if the list we were given had \
@@ -60,12 +60,17 @@ def partition(arr, left, right, pivotIndex):
 	# Iterate from the left bound to 1 index right before the right bound (where \
 	# the chosen pivot value is not sitting safely).
   for i in range(left, right, 1):
+		# If this item is less than the 'pivotValue' then we need to move this item \
+		# to the section of items "less than the pivot".
     if arr[i] < pivotValue:
       swap_help(arr, i, lesserItemsTailIndex)
       lesserItemsTailIndex += 1
-
+	# Partitioning is done so swap the pivot item BACK into the space we just partitioned at the \
+	# 'lesserItemsTailIndex' because that's where the pivot item belongs.
+	# In the middle of the "sandwich"
   swap_help(arr, right, lesserItemsTailIndex)
-
+	# Return the index of where we just put the pivot so that the caller knows its final resting place \
+	# and the caller can make the decisions it needs.
   return lesserItemsTailIndex
 
 def swap_help(arr, first, second):

@@ -29,14 +29,18 @@ def findKthLargest(arr, k):
   left = 0
   right = n - 1
 
+	# While the bounds stay valid continue doing directed partitioning
   while left <= right:
     # Pick a random pivot --> except for the final index position the first time the loop is run
     choosenPivotIndex = random.randint(left , right)
     #print("choosenPivotIndex: {}".format(choosenPivotIndex))
+		
     # Execute the actual partitioning and get back the final position \
     # of the pivot we choose after partitioning is over
     finalIndexOfChoosePivot = partition(arr, left, right, choosenPivotIndex)
     
+		# The pivot is index on index n - k. This is literally its final position if the list we were given had \
+		# been sorted. Don't need to sort the whole list, just each portion of the list that hold's the kth element.
     if (finalIndexOfChoosePivot == n - k):
       return arr[finalIndexOfChoosePivot]
     elif (finalIndexOfChoosePivot > n - k):
@@ -45,7 +49,7 @@ def findKthLargest(arr, k):
       left = finalIndexOfChoosePivot + 1
 
   return - 1
-
+# Basically just doing Quicksort
 def partition(arr, left, right, pivotIndex):
   pivotValue = arr[pivotIndex]
   #print("pivotValue: {}".format(pivotValue))
@@ -53,6 +57,8 @@ def partition(arr, left, right, pivotIndex):
   #print("lesserItemsTailIndex: {}".format(lesserItemsTailIndex))
   swap_help(arr, pivotIndex, right)
 
+	# Iterate from the left bound to 1 index right before the right bound (where \
+	# the chosen pivot value is not sitting safely).
   for i in range(left, right, 1):
     if arr[i] < pivotValue:
       swap_help(arr, i, lesserItemsTailIndex)
@@ -454,9 +460,14 @@ class ReverseString:
     #print("This is a test: {}".format(self.string_to_reverse))
 
   def reverse_string(self, string_param):
-    for char in string_param:
+    string_list = [None] * (len(string_param))
+    for index, char in enumerate(string_param):
       self.string_to_reverse = char + self.string_to_reverse
-    return (self.string_to_reverse)
+      print("index: {}".format(index))
+      print("char: {}".format(char))
+      string_list[index] = char
+      #print(index)
+    return (self.string_to_reverse, string_list)
 
 if __name__ == '__main__':
   reverse_me = ReverseString()

@@ -28,7 +28,7 @@
     Success!
 """
 
-#_EXCERPT = "Well The. quick, brown?    fox!! jumped over         the lazy dog The lazy brown dog jumped over the quick fox. "
+_EXCERPT_2 = "Well The. quick, brown?    fox!! jumped over         the lazy dog The lazy brown dog jumped over the quick fox. "
 
 _EXCERPT = """
 A SQUAT grey building of only thirty-four stories. Over the main entrance the
@@ -47,72 +47,63 @@ A SQUAT grey building of only thirty-four stories. Over the main entrance the
 
 import string, re, collections
 
-# def cleanString(string_val):
-#     return "".join(" " if i string.punctuation)
+def cleanString(string_val):
+    remove = string.punctuation
+    remove = remove.replace("-", "") # don't remove hyphens
+    pattern = r"[{}]".format(remove) # create the pattern
+
+    clean_word = re.sub(pattern, "", string_val.lower()) 
+
+    return clean_word
 
 def _count_and_print_words(excerpt):
 
-    punctuation = "!@#$%^&*()_+<>?:.,;"
     word_counts_by_word = {}
-    count = 0
-    #exclude = set(string.punctuation)
-    #table = str.maketrans("","")
-    #table = str.maketrans(dict.fromkeys(string.punctuation))
     remove_punct_map = dict.fromkeys(map(ord, string.punctuation))
     # grab each word from the string
     for each_word in excerpt.split(" "):
         # remove whitespaces and put into lowercase
         # add to dictionary
         if each_word != "":
-            #each_word.translate(table, string.punctuation)
-            #each_word = each_word.lower()
-            #each_word.translate(remove_punct_map)
-            #each_word.translate(str.maketrans({a:None for a in string.punctuation}))
+            each_word = cleanString(each_word)
             # check if hyphenated word
-            if '-' in each_word:
-                continue
-
-            else:
-                each_word = re.sub(r'[^\w\s]', '', each_word).lower()
+            # if '-' in each_word:
+            #     continue
+            # else:
+            #     each_word = re.sub(r'[^\w\s]', '', each_word).lower()
             # word isn't in dict yet so add it
             if each_word not in word_counts_by_word:
                 word_counts_by_word[each_word.strip()] = 1
             # if word is already in dict
             elif each_word in word_counts_by_word:
                 # update the count of that word
-                temp_value = word_counts_by_word.get(each_word)
-                temp_value += 1
-                word_counts_by_word[each_word.strip()] = temp_value
+                count = word_counts_by_word.get(each_word)
+                count += 1
+                word_counts_by_word[each_word.strip()] = count
             
     # sort dictionary by value 
     sorted_dict = sorted(word_counts_by_word.items(), key=lambda x:x[1])
     new_dict = collections.OrderedDict()
-
-    #print("sorted_dict: {}".format(sorted_dict))
     
     for item in reversed(sorted_dict):
         new_dict[item[0]] = item[1]
-        #print(item)
-        
-    #print(len(new_dict))
-    print("new_dict: {}".format(new_dict))
+    
     return new_dict
 
 
 def main():
     word_counts_by_word = _count_and_print_words(_EXCERPT)
+    word_counts_by_word_2 = _count_and_print_words(_EXCERPT_2)
     _test_that_solution_is_sorted_descending(word_counts_by_word)
+    _test_that_solution_is_sorted_descending(word_counts_by_word_2)
 
 
 def _test_that_solution_is_sorted_descending(word_counts_by_word):
     previous_count = len(word_counts_by_word) + 1
-    print("word_counts_by_word: {}".format(word_counts_by_word))
     if len(word_counts_by_word) == 0:
         print("Failure: List Empty!")
         return
     for word, word_count in word_counts_by_word.items():
-        print("word: {}, word_count: {}".format(word, word_count))
-        print("previous_count: {}".format(previous_count))
         if word is None or word == "":
             print("Failure: Not a word: null or empty!");
             return

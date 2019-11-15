@@ -90,15 +90,21 @@ class Node:
         return self.key == other.key
 
 
-if __name__ == '__main__':
-    hashmap = HashMap()
-    hashmap.put(2, 12)
-    hashmap.put('asd', 13)
-    hashmap.put(2, 11)
-    print(f'Hashmap length: {len(hashmap.store)}')
-    print(hashmap.get(2))
-    print(hashmap.get('asd'))
-    print(hashmap.get('ade'))
-    for k in hashmap.store:
-        print(k)
-    
+# if __name__ == '__main__':
+#     hashmap = HashMap()
+#     hashmap.put(2, 12)
+#     hashmap.put('asd', 13)
+#     hashmap.put(2, 11)
+#     print(f'Hashmap length: {len(hashmap.store)}')
+#     print(hashmap.get(2))
+#     print(hashmap.get('asd'))
+#     print(hashmap.get('ade'))
+#     for k in hashmap.store:
+#         print(k)
+
+# Creates a list containing 5 lists, each of 8 items, all set to 0
+width, height = 8, 5;
+Matrix = [[0 for x in range(width)] for y in range(height)] 
+
+for row in Matrix:
+    print(row)

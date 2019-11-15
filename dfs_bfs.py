@@ -23,8 +23,43 @@ graph = {'A': ['B', 'C', 'E'],
          'F': ['C'],
          'G': ['C']}
 
+graph_2 = {0: [1 ,2],
+           1: [2],
+           2: [3],
+           3: [1, 2]}
+
 import collections
-         
+'''
+How to use deque's as a FIFO queue:
+
+q = deque()
+q.append('eat')
+q.append('sleep')
+q.append('code')
+
+print(q) --> deque(['eat', 'sleep', 'code'])
+
+q.popleft() --> 'eat'
+q.popleft() --> 'sleep'
+q.popleft() --> 'code'
+
+q.pop() --> remove and return an element from the RIGHT side of the deque
+
+'''
+def bfs_2(graph, root):
+  visited, queue = set(), collections.deque([root])
+  visited.add(root)
+  while len(queue) > 0:
+
+    vertex = queue.popleft()
+    
+    for neighbour in graph[vertex]:
+      if neighbour not in visited:
+        visited.add(neighbour)
+        queue.append(neighbour)
+
+  return visited
+
 def bfs(graph, initial):
     
   visited = []
@@ -39,5 +74,6 @@ def bfs(graph, initial):
               queue.append(neighbour)
 
   return visited
- 
-print(bfs(graph,'A'))
+
+print('bfs_2:', bfs_2(graph, 'A'))
+print('bfs:', bfs(graph, 'A'))

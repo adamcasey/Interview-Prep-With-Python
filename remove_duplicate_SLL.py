@@ -43,3 +43,22 @@ class Solution:
                 currentNode = currentNode.next
 
         return head
+        
+sortedList = [1,1,2,3,4,4,4,4,5,6,7,8,8,9]
+sortedLinkedList = []
+
+for _ in sortedList:
+    sortedLinkedList.append(ListNode(_))
+
+for _ in range(len(sortedList)):
+    if _ < len(sortedList) - 1:
+        sortedLinkedList[_].next = sortedLinkedList[_ + 1]
+solutionConst = RemoveDuplicates_Solution()
+return_head = solutionConst.deleteDuplicates(sortedLinkedList[0])
+
+new_sorted_list = []
+                            
+while return_head != None:
+    new_sorted_list.append(return_head.val)
+    return_head = return_head.next
+print(new_sorted_list)

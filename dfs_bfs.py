@@ -1,3 +1,37 @@
+'''
+DFS & BFS of a tree
+'''
+def bfs_tree(root):
+  queue = [root]
+
+  while queue:
+    currentNode = queue[0]
+    del queue[0]
+    print(f'{currentNode.val}')
+    if currentNode.left != None:
+        queue.append(currentNode.left)
+    if currentNode.right != None:
+        queue.append(currentNode.right)
+
+  return root
+
+def dfs_tree(root):
+  stack = [root]
+
+  while stack:
+    currentNode = queue.pop()
+    print(f'{currentNode.val}')
+    if currentNode.left != None:
+        queue.append(currentNode.left)
+    if currentNode.right != None:
+        queue.append(currentNode.right)
+
+  return root
+
+'''
+DFS & BFS of a graph
+'''
+
 def depth_first_search(graph):
   visited, stack = set(), [root]
   while stack:
